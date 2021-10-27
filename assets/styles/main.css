@@ -1,0 +1,393 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap");
+.dashboard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  height: 100vh;
+}
+
+.dashboard .menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 15%;
+}
+
+.dashboard .menu .menu__button-wrapper {
+  width: 85%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin-top: 35%;
+}
+
+.dashboard .menu .menu__button-wrapper .menu__button {
+  width: 100%;
+  height: 35px;
+  background-color: #558eff;
+  border-color: #558eff;
+  border-radius: 5%;
+}
+
+.dashboard .menu .menu__anchor-wrapper {
+  margin-left: 24%;
+}
+
+.dashboard .menu .menu__anchor-wrapper .menu__anchor {
+  text-decoration: none;
+  color: black;
+}
+
+.dashboard .menu .menu__anchor-wrapper .menu__anchor:hover {
+  color: #558eff;
+}
+
+.dashboard .menu .menu__anchor-wrapper .menu__anchor:focus {
+  color: #558eff;
+}
+
+.dashboard .dashboard__section-chart {
+  width: 60%;
+  background-color: #f1f4f8;
+}
+
+.dashboard .dashboard__section-chart .header-chart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 100%;
+  height: 11%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid #cacccf;
+  border-right: 1px solid #cacccf;
+  background-color: #f1f4f8;
+}
+
+.dashboard .dashboard__section-chart .header-chart #dashboardInputSearch {
+  width: 100%;
+  margin-left: 12%;
+  border: none;
+  background-color: #f1f4f8;
+}
+
+.dashboard .dashboard__section-chart .header-chart #dashboardInputSearch:focus {
+  outline: none;
+}
+
+.dashboard .dashboard__section-chart .header-chart #dashboardSubmitSearch {
+  visibility: hidden;
+}
+
+.dashboard .dashboard__section-chart .donation {
+  margin-top: 5%;
+  font-size: 1.5rem;
+}
+
+.dashboard .dashboard__section-profile {
+  width: 25%;
+}
+
+.dashboard .dashboard__section-profile .header-profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 100%;
+  height: 11%;
+  border-bottom: 1px solid #cacccf;
+}
+
+.dashboard .dashboard__section-profile .header-profile #dashboardWrapperButton {
+  width: 100%;
+}
+
+.dashboard .dashboard__section-profile .header-profile #dashboardWrapperButton #dashboardLogIn {
+  width: 45%;
+  height: 35px;
+  margin-left: 5%;
+  color: black;
+  font-size: 1.2rem;
+  background-color: #558eff;
+  border-color: #558eff;
+  border-radius: 5%;
+}
+
+.dashboard .dashboard__section-profile .header-profile #dashboardWrapperButton #dashboardRegistration {
+  width: 45%;
+  height: 35px;
+  color: black;
+  font-size: 1.2rem;
+  background-color: #558eff;
+  border-color: #558eff;
+  border-radius: 5%;
+}
+
+.dashboard .dashboard__section-profile .header-profile #dashboardWrapperForgetPas {
+  width: 100%;
+}
+
+.dashboard .dashboard__section-profile .header-profile #dashboardWrapperForgetPas .header-profile__forgetPassword {
+  text-decoration: none;
+  color: black;
+  margin-left: 4%;
+}
+
+.dashboard .dashboard__section-profile .header-profile #dashboardWrapperForgetPas .header-profile__forgetPassword:hover {
+  color: #558eff;
+}
+
+.header-profile__notification {
+  display: none;
+  width: 20%;
+  height: 100%;
+  border-right: 1px solid #cacccf;
+}
+
+.header-profile__notification .bell-image {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-left: 0.8rem;
+  margin-top: 0.9rem;
+}
+
+.header-profile__avatar-login {
+  display: none;
+  width: 50%;
+}
+
+.header-profile__avatar-login .header-profile__wrapper-userphoto {
+  float: left;
+  height: 76px;
+  width: 76px;
+}
+
+.header-profile__avatar-login .header-profile__wrapper-userphoto #placeUserPhoto {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.nameLaoyt {
+  width: 50%;
+  float: left;
+  color: black;
+  text-align: center;
+  line-height: 2rem;
+  font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.dashboard__dropdown {
+  position: relative;
+  display: none;
+}
+
+.dashboard__dropbtn {
+  width: 35px;
+  height: 35px;
+  margin-right: 4rem;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.dashboard__dropbtn .dashboard__dropbtn-img {
+  max-width: 100%;
+  max-height: 100%;
+  background-color: white;
+}
+
+.dashboard__dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100px;
+  z-index: 1;
+}
+
+.buttonSignOut {
+  display: none;
+  width: 100px;
+  background-color: #558eff;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #558eff;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+.popupLogIn {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(113, 116, 116, 0.8);
+  opacity: 0;
+  visibility: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-transition: all 0.8s ease 0s;
+  transition: all 0.8s ease 0s;
+}
+
+.popupLogIn:target {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popupLogIn:target .popupLogIn__content {
+  -webkit-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+  opacity: 1;
+}
+
+.popupLogIn .popupLogIn__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 30px 10px;
+}
+
+.popupLogIn__content {
+  margin-top: 16%;
+  position: relative;
+  background-color: #f1f4f8;
+  color: black;
+  max-width: 1000px;
+  padding: 30px;
+  -webkit-transition: all 0.8s ease 0s;
+  transition: all 0.8s ease 0s;
+  opacity: 0;
+  -webkit-transform: translate(0px, -100%);
+          transform: translate(0px, -100%);
+}
+
+.popup:target .popupLogIn__content {
+  -webkit-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+  opacity: 1;
+}
+
+.popupRegistration {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(113, 116, 116, 0.8);
+  opacity: 0;
+  visibility: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-transition: all 0.8s ease 0s;
+  transition: all 0.8s ease 0s;
+}
+
+.popupRegistration:target {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popupRegistration:target .popupRegistration__content {
+  -webkit-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+  opacity: 1;
+}
+
+.popupRegistration .popupRegistration__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 30px 10px;
+}
+
+.popupRegistration__content {
+  position: relative;
+  margin-top: 26%;
+  background-color: #f1f4f8;
+  color: black;
+  max-width: 1000px;
+  padding: 30px;
+  -webkit-transition: all 0.8s ease 0s;
+  transition: all 0.8s ease 0s;
+  opacity: 0;
+  -webkit-transform: translate(0px, -100%);
+          transform: translate(0px, -100%);
+}
+
+.popupRegistration:target .popupRegistration__content {
+  -webkit-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+  opacity: 1;
+}
+
+.hidden {
+  visibility: hidden;
+  display: none;
+  opacity: 0;
+}
+
+.visible {
+  visibility: visible;
+  display: block;
+  opacity: 1;
+}
+
+.chart-area {
+  margin-top: 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#chart {
+  width: 60%;
+  height: 40vh;
+  border: 1px solid #cacccf;
+  -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+          box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+
+.dashboard {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+
+
+    .menu {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 15%;
+
+
+        .menu__button-wrapper {
+            width: 85%;
+            align-self: center;
+            margin-top: 35%;
+
+            .menu__button {
+                width: 100%;
+                height: 35px;
+                background-color: $blue-color;
+                border-color: $blue-color;
+                border-radius: 5%;
+            }
+        }
+
+        .menu__anchor-wrapper {
+            margin-left: 24%;
+
+
+            .menu__anchor {
+                text-decoration: none;
+                color: black;
+
+                &:hover {
+                    color: $blue-color;
+                }
+
+                &:focus {
+                    color: $blue-color;
+                }
+            }
+        }
+    }
+
+    .dashboard__section-chart {
+        width: 60%;
+        background-color: $gray-background;
+        // border: 1px solid green;
+
+        .header-chart {
+            display: flex;
+            max-width: 100%;
+            height: 11%;
+            align-items: center;
+            border-bottom: 1px solid $gray-border;
+            border-right: 1px solid $gray-border;
+            background-color: $gray-background;
+
+
+            #dashboardInputSearch {
+                width: 100%;
+                margin-left: 12%;
+                border: none;
+
+                &:focus {
+                    outline: none;
+                }
+
+                background-color: $gray-background;
+            }
+
+            #dashboardSubmitSearch{
+                visibility: hidden;
+            }
+        }
+
+       .donation{
+            margin-top: 5%;
+            font-size: 1.5rem;
+        }
+    }
+
+    .dashboard__section-profile {
+        width: 25%;
+
+        .header-profile {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 100%;
+            height: 11%;
+            border-bottom: 1px solid #cacccf;
+
+            #dashboardWrapperButton {
+                // display: flex;
+                // justify-content: space-around;
+                width: 100%;
+
+                #dashboardLogIn {
+                    width: 45%;
+                    height: 35px;
+                    margin-left: 5%;
+                    color: black;
+                    font-size: 1.2rem;
+                    background-color: $blue-color;
+                    border-color: $blue-color;
+                    border-radius: 5%;
+                }
+
+                #dashboardRegistration {
+                    width: 45%;
+                    height: 35px;
+                    color: black;
+                    font-size: 1.2rem;
+                    background-color: $blue-color;
+                    border-color: $blue-color;
+                    border-radius: 5%;
+                }
+            }
+
+            #dashboardWrapperForgetPas {
+                width: 100%;
+
+                .header-profile__forgetPassword {
+                    text-decoration: none;
+                    color: black;
+                    margin-left: 4%;
+
+                    &:hover {
+                        color: $blue-color;
+                    }
+                }
+            }
+
+
+        }
+    }
+}
+
+.header-profile__notification {
+    display: none;
+    width: 20%;
+    height: 100%;
+    border-right: 1px solid $gray-border;
+
+    // background-color: blueviolet;
+    .bell-image {
+        width: 3.5rem;
+        height: 3.5rem;
+        margin-left: 0.8rem;
+        margin-top: 0.9rem;
+    }
+}
+
+.header-profile__avatar-login {
+    display: none;
+    width: 50%;
+
+    .header-profile__wrapper-userphoto{
+        float: left;
+        height: 76px;
+        width: 76px;
+        // width: 50%;
+        //margin-left: 36%;
+
+        #placeUserPhoto {
+            // max-width: 100%;
+            // max-height: 100%;
+            width: 100%;
+            height: 100%;
+            // border-radius: 84px;
+            border-radius: 50%;
+        }
+    }
+}
+
+.nameLaoyt {
+    width: 50%;
+    float: left;
+    color: black;
+    text-align: center;
+    //font-size: 1.2rem;
+    line-height: 2rem;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.dashboard__dropdown {
+    position: relative;
+    //display: inline-block;
+    display: none;
+}
+
+.dashboard__dropbtn {
+    width: 35px;
+    height: 35px;
+    margin-right: 4rem;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    // &:hover, &:focus {
+    //     background-color: #2980B9;
+    // }
+
+    .dashboard__dropbtn-img {
+        max-width: 100%;
+        max-height: 100%;
+        background-color: white;
+    }
+}
+
+.dashboard__dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 100px;
+    z-index: 1;
+}
+
+.buttonSignOut {
+    display: none;
+    width: 100px;
+    background-color: $blue-color;
+    // color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid $blue-color;
+    border-radius: 5%;
+    cursor: pointer;
+}
+
+.popupLogIn {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(113, 116, 116, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: all 0.8s ease 0s;
+
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:target .popupLogIn__content {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+
+    .popupLogIn__body {
+        // min-height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 10px;
+    }
+}
+
+.popupLogIn__content {
+    margin-top: 16%;
+    position: relative;
+    background-color: $gray-background;
+    color: black;
+    max-width: 1000px;
+    padding: 30px;
+    transition: all 0.8s ease 0s;
+    opacity: 0;
+    transform: translate(0px, -100%);
+}
+
+.popup:target .popupLogIn__content {
+    transform: translate(0px, 0px);
+    opacity: 1;
+}
+
+
+.popupRegistration {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(113, 116, 116, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: all 0.8s ease 0s;
+
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:target .popupRegistration__content {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+
+    .popupRegistration__body {
+        // min-height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 10px;
+    }
+}
+
+.popupRegistration__content {
+    position: relative;
+    margin-top: 26%;
+    background-color: $gray-background;
+    color: black;
+    max-width: 1000px;
+    padding: 30px;
+    transition: all 0.8s ease 0s;
+    opacity: 0;
+    transform: translate(0px, -100%);
+
+}
+
+.popupRegistration:target .popupRegistration__content {
+    transform: translate(0px, 0px);
+    opacity: 1;
+}
+
+.hidden {
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+}
+
+.visible {
+    visibility: visible;
+    display: block;
+    opacity: 1;
+}

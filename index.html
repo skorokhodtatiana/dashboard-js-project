@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles/normalize.css" />
+    <link rel="stylesheet" href="./assets/styles/main.css" />
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div >
+        <main class="dashboard">
+            <nav class="menu">
+                <p class="menu__button-wrapper"><button class="menu__button" type="button">Upload</button></p>
+                <p class="menu__anchor-wrapper"><a class="menu__anchor" href="#">My page</a></p>
+                <p class="menu__anchor-wrapper"><a class="menu__anchor" href="#">Dashboard</a></p>
+                <p class="menu__anchor-wrapper"> <a class="menu__anchor" href="#">Chat</a></p>
+                <p class="menu__anchor-wrapper"> <a class="menu__anchor" href="#">Settings</a></p>
+
+            </nav>
+            <section class="dashboard__section-chart">
+                <header class="header-chart">
+                    <form action="#">
+                        <input id="dashboardInputSearch" type="text" placeholder="Search...input login" />
+                        <button id="dashboardSubmitSearch" type="submit"></button>
+                    </form>
+                    
+                </header>
+
+                <div class="chart-area">
+                    <canvas id="chart">
+
+                    </canvas>
+                </div>
+
+                <form action="#" class="donation">
+                    <label>Enter the amount in dollars
+                        <input id="dashboardInputDonat" type="number" name="donat" placeholder="dollar amount">
+                    </label>
+                    <span>$</span>
+                    <button id="donatSubmit" type="submit">Send</button>
+                </form>
+            </section>
+
+            <section class="dashboard__section-profile">
+                <header class="header-profile">
+                    <div id="dashboardWrapperButton">
+                        <button type="button" id="dashboardLogIn">Log in</button>
+                        <button type="button" id="dashboardRegistration">Registration</button>
+
+                    </div>
+                    <div id="dashboardWrapperForgetPas">
+                        <a class="header-profile__forgetPassword" href="#">Forget password?</a>
+                    </div>
+                    <div class="header-profile__notification" id="dashboardNotification"><img class="bell-image"
+                            src="./assets/images/bell-icon.png" /></div>
+                    <div id="dashboardAvatarLogin" class="header-profile__avatar-login">
+                        <div class="header-profile__wrapper-userphoto">
+                            <img id="placeUserPhoto" src="" alt="userPhoto" />
+                        </div>
+                        <div id="placeUserName"></div>
+                        <div id="placeUserLogin"></div>
+                    </div>
+                    <div id="dashboard__dropdown" class="dashboard__dropdown">
+                        <button id="dashboard__dropbtn" class="dashboard__dropbtn">▼</button>
+                        <div id="dashboard__dropdown-content" class="dashboard__dropdown-content">
+                            <button id="buttonSignOut" class="buttonSignOut" type="button">Sign out</button>
+                        </div>
+                    </div>
+                </header>
+
+            </section>
+        </main>
+
+        <div id="popupLogIn" class="popupLogIn">
+            <div class="popupLogIn__body">
+                <div id="popupLogIn__content" class="popupLogIn__content">
+                    <button type="button" id="button_closeModalLogIn">X</button>
+                    <form id="dashboard_form">
+                        <input id="dashboard_input-login" type="text" placeholder="login">
+                        <input id="dashboard_input-password" type="password" placeholder="password">
+                        <button id="dashboard_submit-form" type="submit">Log in</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="popupRegistration" class="popupRegistration">
+            <div class="popupRegistration__body">
+                <div id="popupRegistration__content" class="popupRegistration__content">
+                    <button type="button" id="button_closeModal2">X</button>
+                    <form action="https://httpbin.org/post" id="dashboard_formRegistration">
+                        <p>
+                            <label for="nameUser">What is your name?</label>
+                            <input id="nameUser" type="text" name="name" placeholder="Name" required/>
+                        </p>
+                        <p>
+                            <label for="surnameUser">What is your surname?</label>
+                            <input id="surnameUser" type="text" name="surname" placeholder="Surname" required/>
+                        </p>
+                        <p>
+                            <label for="urlPhoto">Link to your avatar</label>
+                            <input id="urlPhoto" type="url" name="url" required/>
+                        </p>
+                        <p>
+                            <label for="dashboard_loginRegistration">Enter your login</label>
+                            <input id="dashboard_loginRegistration" name="login" type="text" pattern="/^[a-z]+$/i"; placeholder="login" required>
+                        </p>
+                        <p>
+                            <label for="dashboard_passwordRegistration">Сome up with a password</label>
+                            <input id="dashboard_passwordRegistration" type="password" name="password"
+                                placeholder="password" required>
+                        </p>
+                        <button id="dashboard_submitRegistration" type="submit">Registration</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="./bundle.js"></script>
+
+</body>
+
+</html>

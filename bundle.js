@@ -1,4 +1,120 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+const Chart = require('chart.js');
+let donationChart = document.getElementById("chart");
+
+
+// const ctx = document.getElementById('myChart');
+// let myChart = new Chart(donationChart, {
+//     type: 'line',
+//     data: {
+//         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+//         datasets: [{
+//             label: '# of Votes',
+//             data: 'data',
+//             backgroundColor: [
+//                 'rgba(255, 99, 132, 0.2)',
+//                 // 'rgba(54, 162, 235, 0.2)',
+//                 // 'rgba(255, 206, 86, 0.2)',
+//                 // 'rgba(75, 192, 192, 0.2)',
+//                 // 'rgba(153, 102, 255, 0.2)',
+//                 // 'rgba(255, 159, 64, 0.2)'
+//             ],
+//             borderColor: [
+//                 'rgba(255, 99, 132, 1)',
+//                 // 'rgba(54, 162, 235, 1)',
+//                 // 'rgba(255, 206, 86, 1)',
+//                 // 'rgba(75, 192, 192, 1)',
+//                 // 'rgba(153, 102, 255, 1)',
+//                 // 'rgba(255, 159, 64, 1)'
+//             ],
+//             borderWidth: 1
+//         }]
+//     },
+//     options: {
+//         scales: {
+//             y: {
+//                 beginAtZero: true
+//             }
+//         }
+//     }
+// });
+
+let moneyData = {
+    labels: [1, 2, 3, 4, 5, 6],
+    datasets: [{
+      label: "Donations ($)",
+      data: [0, 20, 4, 9, 14, 6],
+      lineTension: 0.4,
+      fill: false,
+      borderColor: 'rgba(54, 162, 235, 1)',
+      backgroundColor: 'rgba(255, 206, 86, 0.2)',
+    }]
+  };
+
+  let chartOptions = {
+    legend: {
+      display: true,
+      position: 'top',
+      labels: {
+        boxWidth: 80,
+        fontColor: 'black'
+      }
+    }
+  };
+
+  let myChart = new Chart(donationChart, {
+    type: 'line',
+    data: moneyData,
+    options: chartOptions
+  });
+
+function getValueUser(arrChart){
+    //console.log( myChart.data.datasets[0].data);
+    // moneyData.datasets[0].data = [...arrChart];
+
+    myChart.destroy();
+
+    let donationChart = document.getElementById("chart");
+
+    // let moneyData = {
+    //     labels: [1, 2, 3, 4, 5, 6],
+    //     datasets: [{
+    //       label: "Donations ($)",
+    //       data: arrChart,
+    //       lineTension: 0.4,
+    //       fill: false,
+    //       borderColor: 'rgba(54, 162, 235, 1)',
+    //       backgroundColor: 'rgba(255, 206, 86, 0.2)',
+    //     }]
+    //   };
+
+    // console.log(arrChart);
+    moneyData.datasets[0].data = [...arrChart];
+   
+    // let chartOptions = {
+    //     legend: {
+    //       display: true,
+    //       position: 'top',
+    //       labels: {
+    //         boxWidth: 80,
+    //         fontColor: 'black'
+    //       }
+    //     }
+    // };
+
+    myChart = new Chart(donationChart, {
+    type: 'line',
+    data: moneyData,
+    options: chartOptions
+  });
+    console.log(myChart.data);
+    console.log(arrChart);
+}
+
+module.exports = getValueUser;
+},{"chart.js":3}],2:[function(require,module,exports){
+const getValueUser = require('./graph');
+
 let modalLogIn = document.getElementById('popupLogIn');
 let modalLogInContent = document.getElementById('popupLogIn__content');
 
@@ -67,6 +183,7 @@ submitLogIn.addEventListener('click', function (event) {
         showNotification();
         showPhoto(parseUser);
         showDropdown();
+        setDonationToChart(parseUser.login);
     }
 })
 
@@ -176,6 +293,7 @@ buttonRegistration.addEventListener('click', function (event) {
     showPhoto(user);
     showNotification();
     showDropdown();
+   
     return user;
 })
 
@@ -224,7 +342,7 @@ buttonSignOut.addEventListener('click', showButtonLogIn);
 const inputDonation = document.getElementById('dashboardInputDonat');
 let numberDonations = [];
 
-function getNumberDonations(userLogin) {
+ function getNumberDonations(userLogin) {
     let valInputDonation = inputDonation.value;
     numberDonations = [];
     let keyUserDonations = userLogin + "Donation";
@@ -235,6 +353,7 @@ function getNumberDonations(userLogin) {
         if (valInputDonation) {
             numberDonations.push(valInputDonation);
             localStorage.setItem(keyUserDonations, numberDonations);
+            // return numberDonations;
         }
 
     } else {
@@ -253,17 +372,35 @@ function cleanInputDonation() {
     inputDonation.value = "";
 }
 
+function setDonationToChart(userLogin){
+    
+    let resultSearchInput = localStorage.getItem(userLogin + "Donation");
+    if(resultSearchInput){
+        let arrStringVal = resultSearchInput.split(',');
+        // console.log(resultSearchInput.split(','));
+        let arrChart   = arrStringVal.map( s => +s );
+        getValueUser(arrChart);
+    }
+   
+    
+    //console.log(arrChart);
+    
+}
+
 const donatSubmit = document.getElementById('donatSubmit');
 donatSubmit.addEventListener('click', function (event) {
     event.preventDefault();
     let userLogin = placeUserLogin.innerText;
     getNumberDonations(userLogin);
+    setDonationToChart(userLogin);
+  
 })
 
 const inputSearch = document.getElementById('dashboardInputSearch');
 
 function getSearchUser() {
     let resultSearchInput = localStorage.getItem(inputSearch.value + "Donation");
+    console.log(resultSearchInput);
     let validateResultNumbers = resultSearchInput.trim();
     if (validateResultNumbers) {
         let resultTotalAmount = getTotalAmountDonation(validateResultNumbers);
@@ -275,8 +412,11 @@ function getSearchUser() {
 
 function getTotalAmountDonation(validateResultNumbers) {
     let arrTotalAmount = validateResultNumbers.split(",");
+    console.log(validateResultNumbers);
+    console.log(arrTotalAmount);
     let sumTotalAmountDonation = arrTotalAmount.reduce((a, c) => a + (+c), 0)
     inputSearch.value = inputSearch.value + " " + "donated" + " " + sumTotalAmountDonation + "$";
+    return arrTotalAmount;
 }
 
 const submitSearch = document.getElementById('dashboardSubmitSearch');
@@ -307,44 +447,11 @@ function processShowUser(user) {
     showPhoto(user);
     showNotification();
     showDropdown();
+    setDonationToChart(user.login)
 }
-},{}],2:[function(require,module,exports){
-//let array = [5, 6, 18, 10, 4, 2, 8, 25];
-const Chart = require('chart.js');
-let moneyChart = document.getElementById("chart");
 
-//Chart.defaults.global.defaultFontFamily = "Lato";
-//Chart.defaults.global.defaultFontSize = 18;
 
-let moneyData = {
-  labels: ["Oct.1", "Oct.2", "Oct.3", "Oct.4", "Oct.5", "Oct.6", "Oct.7", "Oct.8", "Oct.9", "Oct.10"],
-  datasets: [{
-    label: "Donations ($)",
-    data: [0, 59, 75, 20, 20, 55, 40, 56, 15, 50],
-    lineTension: 0.4,
-    fill: false,
-    borderColor: '#558eff',
-    backgroundColor: '#FFFFFF',
-  }]
-};
-
-let chartOptions = {
-  legend: {
-    display: true,
-    position: 'top',
-    labels: {
-      boxWidth: 80,
-      fontColor: 'black'
-    }
-  }
-};
-
-let lineChart = new Chart(moneyChart, {
-  type: 'line',
-  data: moneyData,
-  options: chartOptions
-});
-},{"chart.js":3}],3:[function(require,module,exports){
+},{"./graph":1}],3:[function(require,module,exports){
 /*!
  * Chart.js v3.5.1
  * https://www.chartjs.org
@@ -13568,4 +13675,4 @@ return Chart;
 
 })));
 
-},{}]},{},[1,2]);
+},{}]},{},[2,1]);

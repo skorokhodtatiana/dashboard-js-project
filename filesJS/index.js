@@ -1,3 +1,5 @@
+const getValueUser = require('./graph');
+
 let modalLogIn = document.getElementById('popupLogIn');
 let modalLogInContent = document.getElementById('popupLogIn__content');
 
@@ -66,6 +68,7 @@ submitLogIn.addEventListener('click', function (event) {
         showNotification();
         showPhoto(parseUser);
         showDropdown();
+        setDonationToChart(parseUser.login);
     }
 })
 
@@ -207,7 +210,6 @@ function remoteUser() {
     notification.classList.add('hidden');
     dropdown.classList.remove('visible');
     dropdown.classList.add('hidden');
-
 }
 
 function showButtonLogIn() {
@@ -252,17 +254,30 @@ function cleanInputDonation() {
     inputDonation.value = "";
 }
 
+function setDonationToChart(userLogin) {
+
+    let resultSearchInput = localStorage.getItem(userLogin + "Donation");
+    if (resultSearchInput) {
+        let arrStringVal = resultSearchInput.split(',');
+        let arrChart = arrStringVal.map(s => +s);
+        getValueUser(arrChart);
+    }
+}
+
 const donatSubmit = document.getElementById('donatSubmit');
 donatSubmit.addEventListener('click', function (event) {
     event.preventDefault();
     let userLogin = placeUserLogin.innerText;
     getNumberDonations(userLogin);
+    setDonationToChart(userLogin);
+
 })
 
 const inputSearch = document.getElementById('dashboardInputSearch');
 
 function getSearchUser() {
     let resultSearchInput = localStorage.getItem(inputSearch.value + "Donation");
+    console.log(resultSearchInput);
     let validateResultNumbers = resultSearchInput.trim();
     if (validateResultNumbers) {
         let resultTotalAmount = getTotalAmountDonation(validateResultNumbers);
@@ -274,8 +289,11 @@ function getSearchUser() {
 
 function getTotalAmountDonation(validateResultNumbers) {
     let arrTotalAmount = validateResultNumbers.split(",");
+    console.log(validateResultNumbers);
+    console.log(arrTotalAmount);
     let sumTotalAmountDonation = arrTotalAmount.reduce((a, c) => a + (+c), 0)
     inputSearch.value = inputSearch.value + " " + "donated" + " " + sumTotalAmountDonation + "$";
+    return arrTotalAmount;
 }
 
 const submitSearch = document.getElementById('dashboardSubmitSearch');
@@ -306,4 +324,5 @@ function processShowUser(user) {
     showPhoto(user);
     showNotification();
     showDropdown();
+    setDonationToChart(user.login)
 }

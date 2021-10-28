@@ -260,7 +260,11 @@ function setDonationToChart(userLogin) {
     if (resultSearchInput) {
         let arrStringVal = resultSearchInput.split(',');
         let arrChart = arrStringVal.map(s => +s);
-        getValueUser(arrChart);
+        let indexArr = [];
+        for(let i=0; i<arrChart.length; i++ ){
+            indexArr.push(i);
+        }
+        getValueUser(arrChart, indexArr);
     }
 }
 

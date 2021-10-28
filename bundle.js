@@ -2,43 +2,6 @@
 const Chart = require('chart.js');
 let donationChart = document.getElementById("chart");
 
-
-// const ctx = document.getElementById('myChart');
-// let myChart = new Chart(donationChart, {
-//     type: 'line',
-//     data: {
-//         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//         datasets: [{
-//             label: '# of Votes',
-//             data: 'data',
-//             backgroundColor: [
-//                 'rgba(255, 99, 132, 0.2)',
-//                 // 'rgba(54, 162, 235, 0.2)',
-//                 // 'rgba(255, 206, 86, 0.2)',
-//                 // 'rgba(75, 192, 192, 0.2)',
-//                 // 'rgba(153, 102, 255, 0.2)',
-//                 // 'rgba(255, 159, 64, 0.2)'
-//             ],
-//             borderColor: [
-//                 'rgba(255, 99, 132, 1)',
-//                 // 'rgba(54, 162, 235, 1)',
-//                 // 'rgba(255, 206, 86, 1)',
-//                 // 'rgba(75, 192, 192, 1)',
-//                 // 'rgba(153, 102, 255, 1)',
-//                 // 'rgba(255, 159, 64, 1)'
-//             ],
-//             borderWidth: 1
-//         }]
-//     },
-//     options: {
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             }
-//         }
-//     }
-// });
-
 let moneyData = {
     labels: [1, 2, 3, 4, 5, 6],
     datasets: [{
@@ -68,47 +31,15 @@ let moneyData = {
     options: chartOptions
   });
 
-function getValueUser(arrChart){
-    //console.log( myChart.data.datasets[0].data);
-    // moneyData.datasets[0].data = [...arrChart];
-
+function getValueUser(arrChart, indexArr){
     myChart.destroy();
-
-    let donationChart = document.getElementById("chart");
-
-    // let moneyData = {
-    //     labels: [1, 2, 3, 4, 5, 6],
-    //     datasets: [{
-    //       label: "Donations ($)",
-    //       data: arrChart,
-    //       lineTension: 0.4,
-    //       fill: false,
-    //       borderColor: 'rgba(54, 162, 235, 1)',
-    //       backgroundColor: 'rgba(255, 206, 86, 0.2)',
-    //     }]
-    //   };
-
-    // console.log(arrChart);
     moneyData.datasets[0].data = [...arrChart];
-   
-    // let chartOptions = {
-    //     legend: {
-    //       display: true,
-    //       position: 'top',
-    //       labels: {
-    //         boxWidth: 80,
-    //         fontColor: 'black'
-    //       }
-    //     }
-    // };
-
+    moneyData.labels =[...indexArr];
     myChart = new Chart(donationChart, {
     type: 'line',
     data: moneyData,
     options: chartOptions
   });
-    console.log(myChart.data);
-    console.log(arrChart);
 }
 
 module.exports = getValueUser;
@@ -293,7 +224,6 @@ buttonRegistration.addEventListener('click', function (event) {
     showPhoto(user);
     showNotification();
     showDropdown();
-   
     return user;
 })
 
@@ -326,7 +256,6 @@ function remoteUser() {
     notification.classList.add('hidden');
     dropdown.classList.remove('visible');
     dropdown.classList.add('hidden');
-
 }
 
 function showButtonLogIn() {
@@ -342,7 +271,7 @@ buttonSignOut.addEventListener('click', showButtonLogIn);
 const inputDonation = document.getElementById('dashboardInputDonat');
 let numberDonations = [];
 
- function getNumberDonations(userLogin) {
+function getNumberDonations(userLogin) {
     let valInputDonation = inputDonation.value;
     numberDonations = [];
     let keyUserDonations = userLogin + "Donation";
@@ -353,7 +282,6 @@ let numberDonations = [];
         if (valInputDonation) {
             numberDonations.push(valInputDonation);
             localStorage.setItem(keyUserDonations, numberDonations);
-            // return numberDonations;
         }
 
     } else {
@@ -372,19 +300,18 @@ function cleanInputDonation() {
     inputDonation.value = "";
 }
 
-function setDonationToChart(userLogin){
-    
+function setDonationToChart(userLogin) {
+
     let resultSearchInput = localStorage.getItem(userLogin + "Donation");
-    if(resultSearchInput){
+    if (resultSearchInput) {
         let arrStringVal = resultSearchInput.split(',');
-        // console.log(resultSearchInput.split(','));
-        let arrChart   = arrStringVal.map( s => +s );
-        getValueUser(arrChart);
+        let arrChart = arrStringVal.map(s => +s);
+        let indexArr = [];
+        for(let i=0; i<arrChart.length; i++ ){
+            indexArr.push(i);
+        }
+        getValueUser(arrChart, indexArr);
     }
-   
-    
-    //console.log(arrChart);
-    
 }
 
 const donatSubmit = document.getElementById('donatSubmit');
@@ -393,7 +320,7 @@ donatSubmit.addEventListener('click', function (event) {
     let userLogin = placeUserLogin.innerText;
     getNumberDonations(userLogin);
     setDonationToChart(userLogin);
-  
+
 })
 
 const inputSearch = document.getElementById('dashboardInputSearch');
@@ -449,8 +376,6 @@ function processShowUser(user) {
     showDropdown();
     setDonationToChart(user.login)
 }
-
-
 },{"./graph":1}],3:[function(require,module,exports){
 /*!
  * Chart.js v3.5.1

@@ -43,8 +43,10 @@ function getValueUser(arrChart, indexArr){
 }
 
 module.exports = getValueUser;
-},{"chart.js":3}],2:[function(require,module,exports){
+},{"chart.js":4}],2:[function(require,module,exports){
 const getValueUser = require('./graph');
+const closeModalWindow = require('./modalWindows');
+// const openModalWindow = require('./modalWindows');
 
 let modalLogIn = document.getElementById('popupLogIn');
 let modalLogInContent = document.getElementById('popupLogIn__content');
@@ -62,15 +64,15 @@ buttonLogIn.addEventListener('click', openModalLogIn);
 let inputLogIn = document.getElementById('dashboard_input-login');
 let passwordLogIn = document.getElementById('dashboard_input-password');
 
-function closeModalLogIn() {
-    modalLogIn.classList.add('hidden');
-    modalLogIn.classList.remove('visible');
-    modalLogInContent.classList.add('hidden');
-    modalLogInContent.classList.remove('visible');
-}
+// function closeModalLogIn() {
+//     modalLogIn.classList.add('hidden');
+//     modalLogIn.classList.remove('visible');
+//     modalLogInContent.classList.add('hidden');
+//     modalLogInContent.classList.remove('visible');
+// }
 
-let buttonCloseModalLogIn = document.getElementById('button_closeModalLogIn');
-buttonCloseModalLogIn.addEventListener('click', closeModalLogIn);
+// let buttonCloseModalLogIn = document.getElementById('button_closeModalLogIn');
+// buttonCloseModalLogIn.addEventListener('click', closeModalWindow(modalLogIn, modalLogInContent));
 
 
 function getDataUsers() {
@@ -87,7 +89,8 @@ function checkDataUsers(getUser) {
 
     } else {
         alert("Такой пользовтель не найден, пожалуйста, пройдите регистрацию");
-        closeModalLogIn();
+        // closeModalLogIn();
+        closeModalWindow(modalLogIn, modalLogInContent)
     }
 }
 
@@ -110,7 +113,8 @@ submitLogIn.addEventListener('click', function (event) {
         hideButtons();
         setName(parseUser);
         saveUserOnline(parseUser);
-        closeModalLogIn();
+        // closeModalLogIn();
+        closeModalWindow(modalLogIn, modalLogInContent);
         showNotification();
         showPhoto(parseUser);
         showDropdown();
@@ -144,15 +148,15 @@ registration.addEventListener('click', openModal2);
 //     modalContent.classList.remove('visible');
 // }
 
-function closeModal2() {
-    modal2.classList.add('hidden');
-    modal2.classList.remove('visible');
-    modal2Content.classList.add('hidden');
-    modal2Content.classList.remove('visible');
-}
+// function closeModal2() {
+//     modal2.classList.add('hidden');
+//     modal2.classList.remove('visible');
+//     modal2Content.classList.add('hidden');
+//     modal2Content.classList.remove('visible');
+// }
 
-let buttonCloseModal2 = document.getElementById('button_closeModal2');
-buttonCloseModal2.addEventListener('click', closeModal2);
+// let buttonCloseModal2 = document.getElementById('button_closeModal2');
+// buttonCloseModal2.addEventListener('click', closeModalWindow(modal2, modal2Content));
 
 let wrapperButton = document.getElementById('dashboardWrapperButton');
 let wrapperForgetPas = document.getElementById('dashboardWrapperForgetPas');
@@ -220,7 +224,8 @@ buttonRegistration.addEventListener('click', function (event) {
     hideButtons();
     setName(user);
     saveUserOnline(user);
-    closeModal2();
+    // closeModal2();
+    closeModalWindow(modal2, modal2Content);
     showPhoto(user);
     showNotification();
     showDropdown();
@@ -248,7 +253,6 @@ window.onclick = function (event) {
 
 function remoteUser() {
     localStorage.setItem('onlineUser', " ");
-
     placeWrapperLogin.classList.remove('visible');
     placeWrapperLogin.classList.add('hidden');
     placeUserName.classList.remove('nameLaoyt');
@@ -301,7 +305,6 @@ function cleanInputDonation() {
 }
 
 function setDonationToChart(userLogin) {
-
     let resultSearchInput = localStorage.getItem(userLogin + "Donation");
     if (resultSearchInput) {
         let arrStringVal = resultSearchInput.split(',');
@@ -370,13 +373,54 @@ function getUserOnline() {
 function processShowUser(user) {
     hideButtons();
     setName(user);
-    closeModal2();
+    // closeModal2();
+    closeModalWindow(modal2, modal2Content);
     showPhoto(user);
     showNotification();
     showDropdown();
     setDonationToChart(user.login)
 }
-},{"./graph":1}],3:[function(require,module,exports){
+},{"./graph":1,"./modalWindows":3}],3:[function(require,module,exports){
+
+// let buttonCloseModalLogIn = document.getElementById('button_closeModalLogIn');
+// buttonCloseModalLogIn.addEventListener('click', closeModalLogIn);
+
+// let modal2 = document.getElementById('popupRegistration');
+// let modal2Content = document.getElementById('popupRegistration__content');
+
+function closeModalWindow(modal, modalContent){
+    modal.classList.add('hidden');
+    modal.classList.remove('visible');
+    modalContent.classList.add('hidden');
+    modalContent.classList.remove('visible');
+}
+
+// function openModalWindow(modal, modalContent){
+//     modal.classList.remove('hidden');
+//     modal.classList.add('visible');
+//     modalContent.classList.remove('hidden');
+//     modalContent.classList.add('visible');
+// }
+
+// function openModalLogIn() {
+//     modalLogIn.classList.remove('hidden');
+//     modalLogIn.classList.add('visible');
+//     modalLogInContent.classList.remove('hidden');
+//     modalLogInContent.classList.add('visible');
+// }
+
+// function openModal2() {
+//     modal2Content.classList.remove('hidden');
+//     modal2Content.classList.add('visible');
+//     modal2.classList.remove('hidden');
+//     modal2.classList.add('visible');
+// }
+// let buttonCloseModal2 = document.getElementById('button_closeModal2');
+// buttonCloseModal2.addEventListener('click', closeModal2);
+
+module.exports = closeModalWindow;
+
+},{}],4:[function(require,module,exports){
 /*!
  * Chart.js v3.5.1
  * https://www.chartjs.org
@@ -13600,4 +13644,4 @@ return Chart;
 
 })));
 
-},{}]},{},[2,1]);
+},{}]},{},[2,1,3]);

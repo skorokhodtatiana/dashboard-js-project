@@ -78,7 +78,7 @@
         <div id="popupLogIn" class="popupLogIn">
             <div class="popupLogIn__body">
                 <div id="popupLogIn__content" class="popupLogIn__content">
-                    <button type="button" id="button_closeModalLogIn">X</button>
+                    <button type="button" onclick="closeModalWindow(modalLogIn, modalLogInContent)" id="button_closeModalLogIn">X</button>
                     <form id="dashboard_form">
                         <input id="dashboard_input-login" type="text" placeholder="login">
                         <input id="dashboard_input-password" type="password" placeholder="password">
@@ -90,7 +90,7 @@
         <div id="popupRegistration" class="popupRegistration">
             <div class="popupRegistration__body">
                 <div id="popupRegistration__content" class="popupRegistration__content">
-                    <button type="button" id="button_closeModal2">X</button>
+                    <button type="button" onclick="closeModalWindow(modal2, modal2Content)" id="button_closeModal2">X</button>
                     <form action="https://httpbin.org/post" id="dashboard_formRegistration">
                         <p>
                             <label for="nameUser">What is your name?</label>

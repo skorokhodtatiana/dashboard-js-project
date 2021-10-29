@@ -1,32 +1,18 @@
 const getValueUser = require('./graph');
 const closeModalWindow = require('./modalWindows');
-// const openModalWindow = require('./modalWindows');
+const openModalWindow = require('./modalWindows');
 
 let modalLogIn = document.getElementById('popupLogIn');
 let modalLogInContent = document.getElementById('popupLogIn__content');
 
-function openModalLogIn() {
-    modalLogIn.classList.remove('hidden');
-    modalLogIn.classList.add('visible');
-    modalLogInContent.classList.remove('hidden');
-    modalLogInContent.classList.add('visible');
-}
-
 let buttonLogIn = document.getElementById('dashboardLogIn');
-buttonLogIn.addEventListener('click', openModalLogIn);
+buttonLogIn.addEventListener('click', () => openModalWindow.open(modalLogIn, modalLogInContent));
 
 let inputLogIn = document.getElementById('dashboard_input-login');
 let passwordLogIn = document.getElementById('dashboard_input-password');
 
-// function closeModalLogIn() {
-//     modalLogIn.classList.add('hidden');
-//     modalLogIn.classList.remove('visible');
-//     modalLogInContent.classList.add('hidden');
-//     modalLogInContent.classList.remove('visible');
-// }
-
 let buttonCloseModalLogIn = document.getElementById('button_closeModalLogIn');
-buttonCloseModalLogIn.addEventListener('click', () => closeModalWindow(modalLogIn, modalLogInContent));
+buttonCloseModalLogIn.addEventListener('click', () => closeModalWindow.close(modalLogIn, modalLogInContent));
 
 
 function getDataUsers() {
@@ -43,8 +29,7 @@ function checkDataUsers(getUser) {
 
     } else {
         alert("Такой пользовтель не найден, пожалуйста, пройдите регистрацию");
-        // closeModalLogIn();
-        closeModalWindow(modalLogIn, modalLogInContent)
+        closeModalWindow.close(modalLogIn, modalLogInContent)
     }
 }
 
@@ -67,8 +52,7 @@ submitLogIn.addEventListener('click', function (event) {
         hideButtons();
         setName(parseUser);
         saveUserOnline(parseUser);
-        // closeModalLogIn();
-        closeModalWindow(modalLogIn, modalLogInContent);
+        closeModalWindow.close(modalLogIn, modalLogInContent);
         showNotification();
         showPhoto(parseUser);
         showDropdown();
@@ -85,32 +69,11 @@ let passwordUser = document.getElementById('dashboard_passwordRegistration');
 let modal2 = document.getElementById('popupRegistration');
 let modal2Content = document.getElementById('popupRegistration__content');
 
-function openModal2() {
-    modal2Content.classList.remove('hidden');
-    modal2Content.classList.add('visible');
-    modal2.classList.remove('hidden');
-    modal2.classList.add('visible');
-}
-
 let registration = document.getElementById('dashboardRegistration');
-registration.addEventListener('click', openModal2);
-
-// function closeModalWindow(modal, modalContent){
-//     modal.classList.add('hidden');
-//     modal.classList.remove('visible');
-//     modalContent.classList.add('hidden');
-//     modalContent.classList.remove('visible');
-// }
-
-// function closeModal2() {
-//     modal2.classList.add('hidden');
-//     modal2.classList.remove('visible');
-//     modal2Content.classList.add('hidden');
-//     modal2Content.classList.remove('visible');
-// }
+registration.addEventListener('click', () => openModalWindow.open(modal2, modal2Content));
 
 let buttonCloseModal2 = document.getElementById('button_closeModal2');
-buttonCloseModal2.addEventListener('click', () => closeModalWindow(modal2, modal2Content));
+buttonCloseModal2.addEventListener('click', () => closeModalWindow.close(modal2, modal2Content));
 
 let wrapperButton = document.getElementById('dashboardWrapperButton');
 let wrapperForgetPas = document.getElementById('dashboardWrapperForgetPas');
@@ -178,8 +141,7 @@ buttonRegistration.addEventListener('click', function (event) {
     hideButtons();
     setName(user);
     saveUserOnline(user);
-    // closeModal2();
-    closeModalWindow(modal2, modal2Content);
+    closeModalWindow.close(modal2, modal2Content);
     showPhoto(user);
     showNotification();
     showDropdown();
@@ -277,7 +239,6 @@ donatSubmit.addEventListener('click', function (event) {
     let userLogin = placeUserLogin.innerText;
     getNumberDonations(userLogin);
     setDonationToChart(userLogin);
-
 })
 
 const inputSearch = document.getElementById('dashboardInputSearch');
@@ -327,8 +288,7 @@ function getUserOnline() {
 function processShowUser(user) {
     hideButtons();
     setName(user);
-    // closeModal2();
-    closeModalWindow(modal2, modal2Content);
+    closeModalWindow.close(modal2, modal2Content);
     showPhoto(user);
     showNotification();
     showDropdown();

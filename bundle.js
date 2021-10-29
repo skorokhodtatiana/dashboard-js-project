@@ -71,8 +71,8 @@ let passwordLogIn = document.getElementById('dashboard_input-password');
 //     modalLogInContent.classList.remove('visible');
 // }
 
-// let buttonCloseModalLogIn = document.getElementById('button_closeModalLogIn');
-// buttonCloseModalLogIn.addEventListener('click', closeModalWindow(modalLogIn, modalLogInContent));
+let buttonCloseModalLogIn = document.getElementById('button_closeModalLogIn');
+buttonCloseModalLogIn.addEventListener('click', () => closeModalWindow(modalLogIn, modalLogInContent));
 
 
 function getDataUsers() {
@@ -155,8 +155,8 @@ registration.addEventListener('click', openModal2);
 //     modal2Content.classList.remove('visible');
 // }
 
-// let buttonCloseModal2 = document.getElementById('button_closeModal2');
-// buttonCloseModal2.addEventListener('click', closeModalWindow(modal2, modal2Content));
+let buttonCloseModal2 = document.getElementById('button_closeModal2');
+buttonCloseModal2.addEventListener('click', () => closeModalWindow(modal2, modal2Content));
 
 let wrapperButton = document.getElementById('dashboardWrapperButton');
 let wrapperForgetPas = document.getElementById('dashboardWrapperForgetPas');
